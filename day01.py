@@ -1,33 +1,18 @@
-import requests
-
-
-def part_a(fh):
+def main(fh, window_size=1):
     it = map(int, fh)
-    prev = next(it)
-    answer = 0
-    for curr in it:
-        if curr > prev:
-            answer += 1
-        prev = curr
-
-    return answer
-
-
-def part_b(fh):
-    it = map(int, fh)
-    left, mid, right = next(it), next(it), next(it)
+    window = [next(it) for _ in range(window_size)]
     answer = 0
     for num in it:
-        if num > left:
+        if num > window[0]:
             answer += 1
-        left, mid, right = mid, right, num
+        window = window[1:] + [num]
 
     return answer
 
 
 if __name__ == "__main__":
     with open("data/1") as fh:
-        print(part_a(fh))
+        print(main(fh, 1))
 
     with open("data/1") as fh:
-        print(part_b(fh))
+        print(main(fh, 3))
