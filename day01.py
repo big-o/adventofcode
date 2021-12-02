@@ -1,6 +1,10 @@
 def main(fh, window_size=1):
     it = map(int, fh)
-    window = [next(it) for _ in range(window_size)]
+    try:
+        window = [next(it) for _ in range(window_size)]
+    except StopIteration:
+        raise ValueError(f"Window size {window_size} must be smaller than input.")
+
     answer = 0
     for num in it:
         if num > window[0]:
@@ -11,8 +15,16 @@ def main(fh, window_size=1):
 
 
 if __name__ == "__main__":
+    import sys
+
+
     with open("data/1") as fh:
         print(main(fh, 1))
 
     with open("data/1") as fh:
         print(main(fh, 3))
+
+    if len(sys.argv) > 1:
+        for arg in sys.argv[1:]:
+            with open("data/1") as fh:
+                print(main(fh, int(arg)))
