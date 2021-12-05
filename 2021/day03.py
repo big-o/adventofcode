@@ -111,7 +111,7 @@ def part_b_btree(fh):
 if __name__ == "__main__":
     import sys
 
-    filename = "input/03"
+    filename = sys.argv[1]
     with open(filename) as fh:
         print(part_a(fh))
 

@@ -34,7 +34,7 @@ def part_b(fh):
 
 
 if __name__ == "__main__":
-    filename = "input/02"
+    filename = sys.argv[1]
     with open(filename) as fh:
         print(part_a(fh))
 

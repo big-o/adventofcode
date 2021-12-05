@@ -17,14 +17,14 @@ def main(fh, window_size=1):
 if __name__ == "__main__":
     import sys
 
-    filename = "input/01"
+    filename = sys.argv[1]
     with open(filename) as fh:
         print(main(fh, 1))
 
     with open(filename) as fh:
         print(main(fh, 3))
 
-    if len(sys.argv) > 1:
-        for arg in sys.argv[1:]:
+    if len(sys.argv) > 2:
+        for arg in sys.argv[2:]:
             with open(filename) as fh:
                 print(main(fh, int(arg)))
