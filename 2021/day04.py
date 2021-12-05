@@ -3,7 +3,7 @@ import numpy as np
 
 class Bingo:
     """
-    Rewrite the bingo boards, replacing each number with it's order in the random draw
+    Rewrite the bingo boards, replacing each number with its order in the random draw
     shuffle.
 
     Now we can simply check if someone has won each round by comparing the max value on
