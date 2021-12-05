@@ -17,7 +17,7 @@ def main(fh, window_size=1):
 if __name__ == "__main__":
     import sys
 
-    filename = "data/01"
+    filename = "input/01"
     with open(filename) as fh:
         print(main(fh, 1))
 

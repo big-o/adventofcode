@@ -15,30 +15,32 @@ def part_a(fh):
 ### Boring solution ###
 
 
-def get_rating(nums, rating, level=0):
+def get_rating(nums, idxs, rating, level=0):
     first = {0: [], 1: []}
-    for num in nums:
-        num = num.rstrip()
-        first[int(num[level])].append(num)
+    for idx in idxs:
+        num = nums[idx]
+        first[int(num[level])].append(idx)
 
     choice = 0 if len(first[1]) < len(first[0]) else 1
     if rating == "co2":
         choice = abs(choice - 1)
 
-    nums = first[choice]
+    idxs = first[choice]
 
-    if not nums:
+    if not idxs:
         raise RuntimeError({k: len(v) for k, v in first.items()})
-    elif len(nums) == 1:
-        return int(nums[0], base=2)
+    elif len(idxs) == 1:
+        return int(nums[idxs[0]], base=2)
     else:
-        return get_rating(nums, rating, level + 1)
+        return get_rating(nums, idxs, rating, level + 1)
 
 
 def part_b(fh):
-    o2 = get_rating(fh, "o2")
+    nums = [num.strip() for num in fh]
+    idxs = list(range(len(nums)))
+    o2 = get_rating(nums, idxs, "o2")
     fh.seek(0)
-    co2 = get_rating(fh, "co2")
+    co2 = get_rating(nums, idxs, "co2")
 
     print(o2, co2)
     return o2 * co2
@@ -109,7 +111,7 @@ def part_b_btree(fh):
 if __name__ == "__main__":
     import sys
 
-    filename = "data/03test"
+    filename = "input/03"
     with open(filename) as fh:
         print(part_a(fh))
 

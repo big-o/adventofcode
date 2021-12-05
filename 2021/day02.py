@@ -34,7 +34,7 @@ def part_b(fh):
 
 
 if __name__ == "__main__":
-    filename = "data/02"
+    filename = "input/02"
     with open(filename) as fh:
         print(part_a(fh))
 
