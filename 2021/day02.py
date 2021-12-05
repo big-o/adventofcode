@@ -34,9 +34,7 @@ def part_b(fh):
 
 
 if __name__ == "__main__":
-    filename = sys.argv[1]
-    with open(filename) as fh:
-        print(part_a(fh))
+    from aocutils import run
 
-    with open(filename) as fh:
-        print(part_b(fh))
+    run(part_a)
+    run(part_b)

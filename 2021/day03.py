@@ -109,14 +109,8 @@ def part_b_btree(fh):
 
 
 if __name__ == "__main__":
-    import sys
+    from aocutils import run
 
-    filename = sys.argv[1]
-    with open(filename) as fh:
-        print(part_a(fh))
-
-    with open(filename) as fh:
-        print(part_b(fh))
-
-    with open(filename) as fh:
-        print(part_b_btree(fh))
+    run(part_a)
+    run(part_b)
+    run(part_b_btree)
