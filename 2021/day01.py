@@ -17,5 +17,5 @@ def main(fh, window_size=1):
 if __name__ == "__main__":
     from aocutils import run
 
-    run(main, args=(1,))
-    run(main, args=(3,))
+    run(main, 1)
+    run(main, 3)

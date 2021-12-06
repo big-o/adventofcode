@@ -24,11 +24,7 @@ def main(fh, diag=False):
 
 
 if __name__ == "__main__":
-    import sys
+    from aocutils import run
 
-    filename = sys.argv[1]
-    with open(filename) as fh:
-        print(main(fh))
-
-    with open(filename) as fh:
-        print(main(fh, diag=True))
+    run(main)
+    run(main, diag=True)
