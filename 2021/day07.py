@@ -25,6 +25,16 @@ def part_b(fh):
     Because the derivative of $|X - p|$ is another function that depends on X, sign(X),
     there is no exact solution. But by taking the extreme cases (all X < p, all X > p),
     we can get a range of possible solutions: [mean(X) - 0.5, mean(X) + 0.5].
+
+    To obtain the optimal p:
+
+    * Recall that $\frac{d}{dx} |x| = sign(x)$
+    * Recall that $\sum_1^n{n} = \frac{n(n+1)}{2}$
+    * Find the p (p') that gives the minimum C by setting dC/dx = 0
+    * Because $sign(x)$ depends on x, the derivative still contains an x term that can't
+      be removed. Basically, the answer depends on whether most of the submarines are to
+      the left or right of the optimal point. There are only two possible solutions
+      though, so we can brute force from this stage.
     """
     X = np.array([int(x) for line in fh for x in line.strip().split(",")])
     mean = X.mean()
