@@ -44,7 +44,7 @@ def part_b(fh):
     fn = lambda a, p: round(np.sum(np.abs(a - p) * (np.abs(a - p) + 1) / 2))
     fbest = fn(X, pmin)
 
-    for p in range(pmin, pmax+1):
+    for p in range(pmin, pmax + 1):
         f = fn(X, p)
         if f < fbest:
             pbest = p
@@ -73,11 +73,14 @@ def overkill(fh, func="part_a"):
     elif func == "part_b":
         fn = lambda x, p: round(np.sum(np.abs(x - p) * (np.abs(x - p) + 1) / 2))
     elif func == "silly":
-        fn = lambda x, p: round(np.sum(np.abs(x - p)**2 + np.abs(x - p) + np.sin(x - p)))
+        fn = lambda x, p: round(
+            np.sum(np.abs(x - p) ** 2 + np.abs(x - p) + np.sin(x - p))
+        )
     else:
         fn = func
 
     space = [Integer(1, int(np.max(X)), name="p")]
+
     @use_named_args(space)
     def objective(**params):
         return fn(X, **params)
@@ -86,7 +89,7 @@ def overkill(fh, func="part_a"):
         warnings.simplefilter("ignore", UserWarning)
         res_gp = gp_minimize(objective, space, n_calls=50, random_state=42)
     return fn(X, res_gp.x[0])
-    
+
 
 if __name__ == "__main__":
     from aocutils import run
