@@ -1,4 +1,3 @@
-import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.sparse import coo_matrix
@@ -40,10 +39,11 @@ def main(fh, steps=None, show=False):
         paper = halves[0] | halves[1]
 
     if show:
-        plt.imshow(paper.T, cmap=cm.gray)
+        plt.imshow(paper.T)
         plt.show()
 
     return paper.sum()
+
 
 if __name__ == "__main__":
     from aocutils import run
