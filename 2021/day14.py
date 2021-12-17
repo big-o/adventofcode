@@ -27,8 +27,7 @@ def load(fh):
         line = line.strip()
         rules[line[:2]] = [f"{line[0]}{line[-1]}", f"{line[-1]}{line[1]}"]
 
-
-    template = Counter([tmp[i:i+2] for i in range(len(tmp)-1)])
+    template = Counter([tmp[i : i + 2] for i in range(len(tmp) - 1)])
     return template, rules
 
 
@@ -59,7 +58,6 @@ def main(fh, n_steps):
         for pair in diff:
             for newpair in rules[pair]:
                 template[newpair] += diff[pair]
-
 
     els = pairs2elements(template).most_common()
 
