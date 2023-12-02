@@ -35,7 +35,7 @@ def main(data) -> None:
     for line in data:
         first = get_first(line, _NUMBERS)
         last = get_first(reversed(line), _RNUMBERS)
-        calib = (10 * first) + last
+        calib = 10 * first + last
         total += calib
 
     print(total)
