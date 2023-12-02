@@ -1,4 +1,7 @@
+from typing import Dict
+
 from common import get_input
+
 
 _NUMBERS = {
     "one": 1,
@@ -12,35 +15,26 @@ _NUMBERS = {
     "nine": 9,
 }
 
+_RNUMBERS = {word[::-1]: num for word, num in _NUMBERS.items()}
 
-def get_first(text: str) -> str:
+
+def get_first(text: str, numbers: Dict[str, int]) -> str:
     ltext = ""
     for ch in text:
         if ch.isdigit():
             return int(ch)
         ltext += ch
-        for num in _NUMBERS:
+        for num in numbers:
             if ltext.endswith(num):
-                return _NUMBERS[num]
-
-
-def get_last(text: str) -> str:
-    rtext = ""
-    for ch in reversed(text):
-        if ch.isdigit():
-            return int(ch)
-        rtext = ch + rtext
-        for num in _NUMBERS:
-            if rtext.startswith(num):
-                return _NUMBERS[num]
+                return numbers[num]
 
 
 def main(data) -> None:
     total = 0
 
     for line in data:
-        first = get_first(line)
-        last = get_last(line)
+        first = get_first(line, _NUMBERS)
+        last = get_first(reversed(line), _RNUMBERS)
         calib = (10 * first) + last
         total += calib
 
