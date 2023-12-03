@@ -28,5 +28,6 @@ class _AOCRetriever:
 
 _retriever = _AOCRetriever()
 
-def get_input(day: int):
+
+def get_input(day: int) -> str:
     return _retriever.get_input(day=day)
