@@ -23,14 +23,14 @@ class Game:
         self.id = int(game[5:])
         self._draws = draws.split("; ")
 
-    def draw(self) -> List[Tuple[int, str]]:
+    def play(self) -> List[Tuple[int, str]]:
         for draw in self._draws:
             for cubes in draw.split(", "):
                 count, colour = cubes.split(" ", 1)
                 yield (int(count), colour)
 
     def could_come_from(self, bag: Bag) -> bool:
-        for count, colour in self.draw():
+        for count, colour in self.play():
             if not bag.has(count, colour):
                 return False
 
@@ -38,7 +38,7 @@ class Game:
     
     def get_min_bag(self) -> Bag:
         r, g, b = 0, 0, 0
-        for count, colour in self.draw():
+        for count, colour in self.play():
             if colour == "red":
                 r = max(r, count)
             elif colour == "green":
