@@ -1,5 +1,14 @@
+"""
+Common I/O utils for AOC challenges.
+
+Create a file called .config.json in the same location as this one containing an object
+with your AOC session cookie in the `session_id` field. You can get this by inspecting
+the headers in your web browser.
+"""
+
+import json
 import requests
-import os
+from pkg_resources import resource_stream
 
 
 class _AOCRetriever:
@@ -7,9 +16,11 @@ class _AOCRetriever:
     session_id: str
 
     def __init__(self) -> None:
-        self.user_agent = os.getenv("AOC_USER_AGENT") or "AOC Python Client"
-        self.session_id = os.getenv("AOC_SESSION_ID")
-        assert self.session_id is not None, "AOC_SESSION_ID env variable not set."
+        with resource_stream(__name__, ".config.json") as fp:
+            config = json.load(fp)
+
+        self.user_agent = config.get("user_agent", "AOC Python Client")
+        self.session_id = config["session_id"]
 
     def get_input(self, day: int) -> str:
         resp = requests.get(
@@ -21,7 +32,7 @@ class _AOCRetriever:
         try:
             resp.raise_for_status()
         except requests.exceptions.HTTPError:
-            raise ConnectionError(f"HTTP {resp.status}: {resp.text}")
+            raise ConnectionError(f"HTTP {resp.status_code}: {resp.text}")
 
         return resp.text
 
